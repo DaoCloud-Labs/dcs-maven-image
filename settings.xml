@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+ <!-- <localRepository>/Users/jiaheng/.m2/repository</localRepository> -->
+    <servers>
+    <server>
+      <id>nexus-releases</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+    <server>
+      <id>nexus-snapshots</id>
+      <username>admin</username>
+      <password>admin123</password>
+    </server>
+    <!--<server>-->
+      <!--<id>nexus-thirdparty</id>-->
+      <!--<username>admin</username>-->
+      <!--<password>admin123</password>-->
+    <!--</server>-->
+  </servers>
+  <mirrors>
+        <mirror>
+            <id>daocloud</id>
+            <name>daocloud maven</name>
+            <url>http://172.23.0.1:30003/repository/maven-public/</url>
+            <mirrorOf>*</mirrorOf>
+        </mirror>
+  </mirrors>
+  <profiles>
+    <profile>
+      <id>nexus</id>
+      <repositories>
+        <repository>
+          <id>nexus</id>
+          <url>http://172.23.0.1:30003/repository/maven-public/</url>
+          <releases>
+            <enabled>true</enabled>
+            <checksumPolicy>warn</checksumPolicy>
+            <updatePolicy>always</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+            <checksumPolicy>warn</checksumPolicy>
+            <updatePolicy>always</updatePolicy>
+                </snapshots>
+      </repository>
+    </repositories>
+    <pluginRepositories>
+      <pluginRepository>
+        <id>nexus</id>
+        <url>http://172.23.0.1:30003/repository/maven-public/</url>
+        <releases>
+          <enabled>true</enabled>
+        </releases>
+        <snapshots>
+          <enabled>true</enabled>
+        </snapshots>
+      </pluginRepository>
+    </pluginRepositories>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>nexus</activeProfile>
+  </activeProfiles>
+</settings> 
