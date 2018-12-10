@@ -6,7 +6,7 @@ A Maven mirroring and sources with settings.xml configuration files encapsulated
 
 ## 文件说明
 ### 1.自定义settings.xml文件
-
+在配置文件中配置有上传jar包权限的账户/密码。如果后续步骤中上传不了，需要在nexus的目标仓库（比如nexus-releases）中开启“Allow Redeploy”。
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
