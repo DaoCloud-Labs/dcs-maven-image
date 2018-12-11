@@ -46,7 +46,7 @@ COPY settings.xml /root/.m2/
 ## 场景一：只需要进行maven构建和打包
 此时无需修改先有项目的pom文件，而是只需在DCS的maven构建使用特定的maven镜像，以及指定构建命令即可。
 
-![deploy](img/mvn clean.png)
+![deploy](img/mvn\ clean.png)
 
 ## 场景二：auth-service项目依赖了basic-data项目
 ### 1、在basic-data（被依赖项目）的pom文件中添加：
