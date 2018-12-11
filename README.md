@@ -1,7 +1,8 @@
 # maven-for-dcs
 A Maven mirroring and sources with settings.xml configuration files encapsulated for DCS pipeline packaging Java applications.
 
-* 该项目主要提供了一个用于 DCS 流水线打包 Java 应用的 Maven 镜像, 用于在 DCS 流水线构建的时候使用本地 Nexus 仓库，加快构建速度。
+* 该项目主要提供了一个用于 DCS 流水线打包 Java 应用的 Maven 镜像。
+* 可通过参考该项目中的配置，用于在 DCS 流水线构建的时候使用本地 Nexus 仓库，加快构建速度。
 * 可通过参考该项目中的配置，用于在 DCS 流水线的时候将被依赖的项目或 Jar 包推送到 Nexus 仓库中。
 * 引用该依赖的项目在 DCS 流水线的时候拉取依赖，随后打包构建镜像。
 
@@ -13,25 +14,20 @@ A Maven mirroring and sources with settings.xml configuration files encapsulated
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
- <!-- <localRepository>/Users/jiaheng/.m2/repository</localRepository> -->
- ······
+          
     <servers>
-    <server>
-      <id>nexus-releases</id>
-      <username>admin</username>
-      <password>admin123</password>
-    </server>
-    <server>
-      <id>nexus-snapshots</id>
-      <username>admin</username>
-      <password>admin123</password>
-    </server>
-    <!--<server>-->
-      <!--<id>nexus-thirdparty</id>-->
-      <!--<username>admin</username>-->
-      <!--<password>admin123</password>-->
-    <!--</server>-->
-  </servers>
+        <server>
+            <id>nexus-releases</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+                
+        <server>
+            <id>nexus-snapshots</id>
+            <username>admin</username>
+            <password>admin123</password>
+        </server>
+    </servers>
  ······
 </settings> 
 ```
@@ -50,8 +46,8 @@ COPY settings.xml /root/.m2/
 
 ![deploy](img/mvn_clean.jpg)
 
-## 使用场景二：A 项目依赖了 B 项目
-### 1、在B（被依赖项目）的 pom 文件中添加：
+## 使用场景二：auth-service 项目依赖了 basic-data 项目
+### 1、在basic-data（被依赖项目）的 pom 文件中添加：
 我们需要将 maven 打包的 jar 包推送至私有仓库，因此需要在项目的 pom.xml 文件中添加如下配置：
 
 ```xml
@@ -61,6 +57,11 @@ COPY settings.xml /root/.m2/
 		<id>nexus-releases</id>
 		<url>http://172.23.0.1:30003/repository/maven-public/</url>
 	</repository>
+    
+	<snapshotRepository>
+		<id>nexus-snapshots</id>
+		<url>http://172.23.0.1:30003/repository/maven-public/</url>
+	</snapshotRepository>
 </distributionManagement>
 ```
 
@@ -69,8 +70,8 @@ COPY settings.xml /root/.m2/
 ![deploy](img/script.png)
 
 
-### 2、在A（引用依赖的项目）的 pom 文件中添加如下内容：
-如果你需要在你的项目中引用私有仓库的依赖，你需要在项目的 pom.xml 文件中添加如下配置：
+### 2、在auth-service（引用依赖的项目）的 pom 文件中添加如下内容：
+如果你需要在你的项目中引用私有仓库的依赖，你需要使用 maven-for-dcs 的这个 settings.xml 文件覆盖自己本地的 settings.xml 配置或者在项目的 pom.xml 文件中添加如下配置：
 
 ```xml
 <repositories>
