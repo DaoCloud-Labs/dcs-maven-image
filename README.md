@@ -43,11 +43,14 @@ FROM maven:3.5.2-jdk-8-alpine
 COPY settings.xml /root/.m2/
 ```
 
+## 场景一：只需要进行maven构建和打包
+此时无需修改先有项目的pom文件，而是只需在DCS的maven构建使用特定的maven镜像，以及指定构建命令即可。
 
-## 具体使用
-举例：auth-service的pon.xml文件中依赖了basic-data。
-### 1、在被依赖项目的pom.xml中添加：
-如果你需要将maven打包的jar包推送至私有仓库，你需要在项目的pom.xml文件中添加如下配置：
+![deploy](img/mvn clean.png)
+
+## 场景二：auth-service项目依赖了basic-data项目
+### 1、在basic-data（被依赖项目）的pom文件中添加：
+我们需要将maven打包的jar包推送至私有仓库，因此需要在项目的pom.xml文件中添加如下配置：
 
 ```xml
 <distributionManagement>
@@ -64,7 +67,7 @@ COPY settings.xml /root/.m2/
 ![deploy](img/script.png)
 
 
-### 2、在引用依赖的项目中，添加如下内容：
+### 2、在auth-service（引用依赖的项目）的pom文件中添加如下内容：
 如果你需要在你的项目中引用私有仓库的依赖，你需要在项目的pom.xml文件中添加如下配置：
 
 ```xml
