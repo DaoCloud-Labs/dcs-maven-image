@@ -47,7 +47,7 @@ COPY settings.xml /root/.m2/
 ## 具体使用
 举例：auth-service的pon.xml文件中依赖了basic-data。
 ### 1、在被依赖项目的pom.xml中添加：
-如果你需要将maven打包的jar包推送至私有仓库，你需要在项目的pon.xml文件中添加如下配置：
+如果你需要将maven打包的jar包推送至私有仓库，你需要在项目的pom.xml文件中添加如下配置：
 
 ```xml
 <distributionManagement>
