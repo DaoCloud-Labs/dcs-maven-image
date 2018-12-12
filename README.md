@@ -45,7 +45,7 @@ COPY settings.xml /root/.m2/
 
 另外也可以通过 DCS 构建镜像，在 DCS 中创建对应的项目，然后创建流水线，并进行镜像构建和推送。
 
-![maven build](img/dcs_maven.jpg)
+![maven build](img/dcs_maven.png)
 
 
 ## 使用场景一：只需要进行 maven 构建和打包
