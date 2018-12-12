@@ -40,10 +40,18 @@ LABEL maintainer “info@daocloud.io"
 COPY settings.xml /root/.m2/
 ```
 
+### 3. 构建 Maven 镜像
+克隆本项目到本地，通过Docker build构建，然后将镜像推送到镜像仓库。
+
+另外也可以通过 DCS 构建镜像，在 DCS 中创建对应的项目，然后创建流水线，并进行镜像构建和推送。
+
+![maven build](img/dcs_maven.jpg)
+
+
 ## 使用场景一：只需要进行 maven 构建和打包
 此时无需修改先有项目的 pom 文件，而是只需在 DCS 的 maven 构建使用特定的 maven 镜像，以及指定构建命令即可。
 
-![deploy](img/mvn_clean.jpg)
+![maven build](img/mvn_clean.jpg)
 
 ## 使用场景二：A 项目依赖了 B 项目
 ### 1、在 B（被依赖项目）的 pom 文件中添加：
