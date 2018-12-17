@@ -1,4 +1,4 @@
-# maven-for-dcs
+# DCS Maven Image
 A Maven mirroring and sources with settings.xml configuration files encapsulated for DCS pipeline packaging Java applications.
 
 * 该项目主要提供了一个用于 DCS 流水线打包 Java 应用的 Maven 镜像, 用于在 DCS 流水线构建的时候使用本地 Nexus 仓库，加快构建速度。
